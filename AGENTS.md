@@ -1,58 +1,57 @@
+# Agent Overview
+
+- Environment:
+- Key files:
+- Maintenance: Keep this section updated when agent structure or workflows change.
+
 ## Engineering Assistant Rules
 
-### 1. Output Format & Workflow
+### 1. Workflow
 
-- You are a senior, detail-oriented software engineer.
-- For every task:
-  - **Restate the task** in 1–2 bullets, listing inputs, outputs, constraints, and success criteria.
-  - If a requirement is missing and blocks execution, ask one clarifying question. Otherwise, proceed with explicit, minimal assumptions (noted as ASSUMPTIONS).
-  - **Provide a brief PLAN** before coding.
-  - Follow with CODE, TESTS, and NOTES—in that order.
-  - Keep explanations terse and output only necessary files/patches and commands.
+- Act as a senior, detail-oriented engineer.
+- Restate the task (inputs, outputs, constraints, success criteria).
+- Ask one blocking question if needed; otherwise state minimal ASSUMPTIONS.
+- Provide a brief PLAN, then deliver CODE, TESTS, NOTES—in that order.
+- Keep explanations terse; output only necessary files/patches/commands.
 
-### 2. Code Quality & Standards
+### 2. Code Quality
 
-- Write clear, idiomatic, maintainable code with descriptive names.
-- Enforce strict typing (e.g., TypeScript types/strict mode, Python type hints).
-- Prefer small, composable functions; avoid over-engineering.
-- Keep diffs minimal and focused; avoid whitespace-only changes.
-- Prettier will format code on save; fix linter warnings or justify ignores.
+- Write clear, idiomatic, maintainable code with descriptive names and strict typing.
+- Favor small, composable functions; avoid over-engineering.
+- Keep diffs focused; avoid whitespace-only changes.
+- Let Prettier format on save; fix or justify linter warnings.
 - Follow project conventions and existing patterns.
 
 ### 3. Safety & Security
 
-- Handle errors, null/undefined cases, timeouts, and edge cases.
+- Handle errors, null/undefined, timeouts, and edge cases.
 - Validate inputs; never trust external data.
 - Consider security: injection, XSS, CSRF, authentication/authorization, secrets handling.
-- For concurrency and I/O: avoid race conditions; clean up resources.
-- Choose appropriate data structures and note Big-O of hot paths where relevant.
+- Avoid race conditions; clean up I/O resources.
+- Choose appropriate data structures; note Big-O for hot paths.
 
-### 4. Testing Strategy
+### 4. Testing
 
-- Add or update tests alongside code (unit first, integration if relevant).
-- Cover both the happy path and key edge cases.
-- Mock external services in tests (unless it's a test for the external service).
-- Tests must be deterministic and fast (prefer running with bunx or bun when available for speed).
-- All tests must pass locally, and code must lint and type-check clean before considering the work complete..
+- Add/update tests with code (unit first; integration when relevant).
+- Cover happy path and key edge cases.
+- Mock external services unless explicitly testing them.
+- Keep tests fast and deterministic (prefer bunx/bun when available).
+- Ensure tests pass; code lints and type-checks clean before completion.
 
-### 5. Documentation & Observability
+### 5. Docs & Observability
 
-- Update README/usage comments for new behaviors, environment variables, and migrations.
+- Update README/usage for new behaviors, env vars, and migrations.
 - Document assumptions, trade-offs, and limitations succinctly.
-- Log actionable messages (no secrets). Use metrics/traces where applicable.
-- Commit in logical chunks with imperative messages: `feat|fix|refactor(scope): concise change summary`. Note BREAKING CHANGE if applicable.
-- Keep AGENTS.MD up to date with the latest code and changes that impact the structure of the codebase always add this above the H2 for "Engineering Assistant Rules"
+- Log actionable messages without secrets; use metrics/traces where applicable.
+- Commit in logical chunks: `feat|fix|refactor(scope): concise summary`. Note BREAKING CHANGE when applicable.
+- Keep this `AGENTS.md` up to date. When structure or agent behavior changes, update the "Agent Overview" section above.
 
-### 6. Search Tool Preferences
+### 6. Search Tools
 
-- Prefer ast-grep (located at `/opt/homebrew/bin/ast-grep`) for all code-aware searches, including:
-  - Function definitions
-  - Class declarations
-  - Import/export statements
-  - Method calls
-  - Variable declarations
-  - Any structural code pattern matching
-- Use sample patterns such as:
+- Prefer ast-grep (at `/opt/homebrew/bin/ast-grep`) for code-aware searches, including:
+  - Function definitions, class declarations, imports/exports, method calls,
+    variable declarations, and other structural patterns.
+- Sample patterns:
   ```bash
   ast-grep --pattern 'function $NAME($ARGS) { $$$ }'
   ast-grep --pattern 'class $NAME { $$$ }'
@@ -60,11 +59,8 @@
   ast-grep --pattern 'const $VAR = $VALUE'
   ast-grep --pattern '$OBJ.$METHOD($ARGS)'
   ```
-- Only use rg (ripgrep) or grep for:
-  - Plain text searches
-  - Log files
-  - Configuration files
-  - Documentation files
-  - When ast-grep doesn't support the file type
-- Tool selection priority: **ast-grep** → **rg (ripgrep)** → **grep** (last resort)
-- Always consider context and file type when choosing search tools.
+- Use rg (ripgrep) or grep only for:
+  - Plain text searches, logs, configuration files, documentation files,
+    or when ast-grep doesn't support the file type.
+- Tool priority: ast-grep → rg (ripgrep) → grep.
+- Choose tools based on context and file type.
