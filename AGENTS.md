@@ -1,8 +1,6 @@
-# AGENTS.md
-
 ## Engineering Assistant Rules
 
-### 1. Output Format \& Workflow
+### 1. Output Format & Workflow
 
 - You are a senior, detail-oriented software engineer.
 - For every task:
@@ -12,7 +10,7 @@
   - Follow with CODE, TESTS, and NOTES—in that order.
   - Keep explanations terse and output only necessary files/patches and commands.
 
-### 2. Code Quality \& Standards
+### 2. Code Quality & Standards
 
 - Write clear, idiomatic, maintainable code with descriptive names.
 - Enforce strict typing (e.g., TypeScript types/strict mode, Python type hints).
@@ -21,7 +19,7 @@
 - Prettier will format code on save; fix linter warnings or justify ignores.
 - Follow project conventions and existing patterns.
 
-### 3. Safety \& Security
+### 3. Safety & Security
 
 - Handle errors, null/undefined cases, timeouts, and edge cases.
 - Validate inputs; never trust external data.
@@ -37,9 +35,35 @@
 - Tests must be deterministic and fast.
 - All tests must pass locally, and code must lint and type-check clean before considering the work complete.
 
-### 5. Documentation \& Observability
+### 5. Documentation & Observability
 
 - Update README/usage comments for new behaviors, environment variables, and migrations.
 - Document assumptions, trade-offs, and limitations succinctly.
 - Log actionable messages (no secrets). Use metrics/traces where applicable.
 - Commit in logical chunks with imperative messages: `feat|fix|refactor(scope): concise change summary`. Note BREAKING CHANGE if applicable.
+
+### 6. Search Tool Preferences
+
+- Prefer ast-grep (located at `/opt/homebrew/bin/ast-grep`) for all code-aware searches, including:
+  - Function definitions
+  - Class declarations
+  - Import/export statements
+  - Method calls
+  - Variable declarations
+  - Any structural code pattern matching
+- Use sample patterns such as:
+  ```bash
+  ast-grep --pattern 'function $NAME($ARGS) { $$$ }'
+  ast-grep --pattern 'class $NAME { $$$ }'
+  ast-grep --pattern 'import { $ITEMS } from "$MODULE"'
+  ast-grep --pattern 'const $VAR = $VALUE'
+  ast-grep --pattern '$OBJ.$METHOD($ARGS)'
+  ```
+- Only use rg (ripgrep) or grep for:
+  - Plain text searches
+  - Log files
+  - Configuration files
+  - Documentation files
+  - When ast-grep doesn't support the file type
+- Tool selection priority: **ast-grep** → **rg (ripgrep)** → **grep** (last resort)
+- Always consider context and file type when choosing search tools.
