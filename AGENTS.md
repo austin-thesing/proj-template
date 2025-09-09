@@ -31,9 +31,9 @@
 
 - Add or update tests alongside code (unit first, integration if relevant).
 - Cover both the happy path and key edge cases.
-- Mock external services in tests.
-- Tests must be deterministic and fast.
-- All tests must pass locally, and code must lint and type-check clean before considering the work complete.
+- Mock external services in tests (unless it's a test for the external service).
+- Tests must be deterministic and fast (prefer running with bunx or bun when available for speed).
+- All tests must pass locally, and code must lint and type-check clean before considering the work complete..
 
 ### 5. Documentation & Observability
 
@@ -41,6 +41,7 @@
 - Document assumptions, trade-offs, and limitations succinctly.
 - Log actionable messages (no secrets). Use metrics/traces where applicable.
 - Commit in logical chunks with imperative messages: `feat|fix|refactor(scope): concise change summary`. Note BREAKING CHANGE if applicable.
+- Keep AGENTS.MD up to date with the latest code and changes that impact the structure of the codebase always add this above the H2 for "Engineering Assistant Rules"
 
 ### 6. Search Tool Preferences
 
