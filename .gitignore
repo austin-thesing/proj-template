@@ -1,10 +1,6 @@
 # Dependencies
 /node_modules
 
-# Build artifacts
-/build
-/coverage
-
 # Logs
 logs
 *.log
@@ -42,3 +38,7 @@ out/
 
 # Node.js
 *.tsbuildinfo
+
+# Build artifacts
+/build
+/coverage
