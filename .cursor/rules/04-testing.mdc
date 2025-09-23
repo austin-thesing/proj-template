@@ -1,6 +1,6 @@
 ---
 description: Tests ship with code; unit first, then integration; mock externals; fast & deterministic; bunx/bun preferred.
-alwaysApply: false
+alwaysApply: auto-attach
 ---
 
 # Testing
