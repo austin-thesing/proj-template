@@ -1,9 +1,9 @@
 ---
-description: Extremely concise summary of React's “You Might Not Need an Effect” — prefer render/data flow & handlers; use Effects only to sync with external systems.
+description: Extremely concise summary of React's "You Might Not Need an Effect" — prefer render/data flow & handlers; use Effects only to sync with external systems.
 globs:
-  - \*_/_.{tsx,jsx}
-  - \*_/_.{ts,js}
-alwaysApply: auto-attach
+  - "**/*.{tsx,jsx}"
+  - "**/*.{ts,js}"
+alwaysApply: false
 ---
 
 # You Might Not Need an Effect
