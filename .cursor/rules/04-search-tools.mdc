@@ -1,29 +1,15 @@
 ---
-description: Prefer ast-grep for code-aware searches; rg/grep for text/logs/configs; tool priority: ast-grep → rg → grep.
+description: Use ast-grep for structural code searches.
 globs:
-  - "**/*.{ts,tsx,js,jsx,py,go,rs,java,c,cpp,h,hpp,php,rb,swift,kt,scala,sh,bash,zsh}"
-  - "**/*.{json,yaml,yml,toml,xml,html,css,scss,sass,less}"
-  - "**/*.{md,mdx,txt,log,conf,config,env}"
-  - "**/*"
+  - "**/*.{ts,tsx,js,jsx,py,go,rs,java,c,cpp}"
 alwaysApply: true
 ---
 
-# Search Tools
+# Structural Search
 
-- Prefer **ast-grep** at `/opt/homebrew/bin/ast-grep` for code-aware searches.
-- Use **rg** (ripgrep) or **grep** for plain text/logs/configs/docs or unsupported file types.
-- Tool priority: **ast-grep → rg → grep**; choose based on file type/context.
+Use `ast-grep` (or `sg`) for code patterns/class/function searches, not regex grep.
 
-## ast-grep Patterns
-
-```bash
-ast-grep --pattern 'function $NAME($ARGS) { $$$ }'
-ast-grep --pattern 'class $NAME { $$$ }'
-ast-grep --pattern 'import { $ITEMS } from "$MODULE"'
-ast-grep --pattern 'const $VAR = $VALUE'
-ast-grep --pattern '$OBJ.$METHOD($ARGS)'
-```
-
-## Usage
-
-- This rule auto-attaches for all file types; you can also pull it in manually via **@Cursor Rules** when planning refactors, audits, or symbol lookups.
+- `ast-grep --pattern 'pattern' --json`
+- Function: `ast-grep --pattern 'function $NAME($ARGS) { $$$ }'`
+- Class: `ast-grep --pattern 'class $NAME { $$$ }'`
+- Fallback: `/opt/homebrew/bin/ast-grep` or `rg` if unavailable.
