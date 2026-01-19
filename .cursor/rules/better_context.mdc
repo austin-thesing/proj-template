@@ -1,0 +1,25 @@
+---
+description: Use btca for up-to-date library/framework answers (source-first).
+alwaysApply: false
+---
+# btca - Better Context Agent
+
+Use btca when the user asks about a specific library/framework, needs current API behavior, or explicitly says to use btca.
+
+## Behavior
+- Prefer `btca ask`; avoid the TUI.
+- If unsure what's configured, run `btca config resources list`.
+- If the user wants to add/change resources or models but omits details, ask for the missing info first.
+
+## Core Commands
+- Ask: `btca ask -r <resource> -q "<question>"`
+- List: `btca config resources list`
+- Add (git): `btca config resources add -n <name> -t git -u <url> -b <branch>`
+- Add (local): `btca config resources add -n <name> -t local --path <absolutePath>`
+- Remove: `btca config resources remove -n <name>`
+- Change model: `btca config model -p <provider> -m <model>`
+- Clear cache: `btca clear`
+
+## Config Locations
+- `~/.config/btca/btca.config.jsonc`
+- `./btca.config.jsonc` (overrides global by name)
