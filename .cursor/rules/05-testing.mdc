@@ -1,0 +1,14 @@
+---
+description: Pragmatic testing for critical paths.
+globs:
+  - "**/*.{test,spec}.{ts,tsx,js,jsx}"
+  - "**/__tests__/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Testing
+
+- Focus critical paths; ~30-40% coverage.
+- Test: security/auth/validation, core logic, critical APIs, data integrity.
+- Skip: simple UI, trivial code, type defs, wrappers, config, basic CRUD.
+- Keep fast/deterministic; test behavior; integration for APIs, mock externals.

@@ -12,13 +12,4 @@ alwaysApply: true
 
 ## Safety (scale with risk)
 - Handle errors, null/undefined; validate inputs.
-- APIs: schema validation (Zod); Auth: XSS/CSRF/injection guards.
-
-## Testing (pragmatic, critical paths only)
-- Target 30-40% coverage. Focus on security, core logic, data integrity.
-- Test: auth, validation, data mutations. Skip: simple UI, trivial code, type definitions.
-- Integration tests for critical APIs. Unit tests for utilities. Manual testing for UI/UX flows.
-- Keep tests fast & deterministic. Don't chase 100% coverage.
-
-## Tooling
-- Prefer **Bun** unless compatibility issues arise; then fallback to NPM/PNPM.
+- APIs: schema validation; Auth: guard against XSS/CSRF/injection.

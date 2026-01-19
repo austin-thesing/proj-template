@@ -1,0 +1,14 @@
+---
+description: Prefer Bun tooling where compatible.
+globs:
+  - "package.json"
+  - "bun.lockb"
+  - "bunfig.toml"
+alwaysApply: false
+---
+
+# Bun Preference
+
+- Prefer `bun` for install/run/test/build; use `bunx` for one-off CLIs.
+- If the project uses Node tooling, fall back to npm/pnpm/yarn.
+- Avoid extra deps when Bun provides built-ins.
