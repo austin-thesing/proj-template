@@ -1,0 +1,30 @@
+---
+description: Pragmatic testing - 30-40% coverage on critical paths only
+globs:
+alwaysApply: true
+---
+
+# Testing
+
+## Philosophy
+Target **30-40% coverage**. Focus critical paths only. Over-testing = maintenance burden.
+
+## Write Tests For
+- Security: Auth, authorization, validation, XSS/injection prevention
+- Core logic: Utilities, transformations, calculations, complex state
+- Critical APIs: Create/read for core resources
+- Data integrity: DB constraints, migrations
+
+## Skip Tests For
+- Simple UI, trivial code, type definitions, third-party wrappers, config, basic CRUD
+
+## Commands
+- `bun test` / `bun test:watch` - Unit tests
+- `bun test:coverage` - Coverage check
+- `bun test:integration` - Integration tests (real DB)
+
+## Best Practices
+- Test behavior, not implementation
+- Descriptive: `it('should reject XSS in user input')`
+- 1-3 assertions per test; isolated & deterministic
+- Integration tests for APIs; mock external deps in unit tests
