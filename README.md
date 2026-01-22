@@ -4,7 +4,7 @@ A brief description of this project.
 
 ## Privacy
 
-See `PRIVACY.md`.
+See `PRIVACY.md` (canonical policy lives on the marketing site).
 
 ## Getting Started
 
